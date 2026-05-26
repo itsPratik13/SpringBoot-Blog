@@ -1,0 +1,7 @@
+maven commands - .\mnvw [command]
+commands: 1) clean: remove temp files + classes
+          2) compile: compiles files
+          3) test: run unit test
+          4)verify: run checks and verify integrations
+
+.\mvnw spring-boot:run  - > runs the springboot application
