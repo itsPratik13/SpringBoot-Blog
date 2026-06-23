@@ -40,6 +40,14 @@ public class Post {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id",nullable = false) //"Create a database column called author_id and store the id of the User object there."
+    private User author;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="category_id",nullable = false)
+    private Category category;
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
