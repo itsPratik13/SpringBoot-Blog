@@ -1,6 +1,7 @@
 package com.tut.blog.domain.services;
 
 import com.tut.blog.domain.dtos.CategoryDTO;
+import com.tut.blog.domain.dtos.CreateCategoryDTO;
 import com.tut.blog.domain.entities.Category;
 import com.tut.blog.domain.mapper.CategoryMapper;
 import com.tut.blog.domain.repository.CategoryRepository;
@@ -16,6 +17,11 @@ public class CategoryService {
     private final CategoryMapper categoryMapper;
 
     public List<CategoryDTO> categoryList(){
-        return categoryRepository.findAll().stream().map(categoryMapper::CategoryDTOMapper).toList();
+        return categoryRepository.findAll().stream().map(categoryMapper::toDto).toList();
+    }
+    public CategoryDTO createCategory(CreateCategoryDTO createCategoryDTO){
+        Category newCategory=categoryMapper.toEntity(createCategoryDTO);
+        Category savedCategory=categoryRepository.save(newCategory);
+        return categoryMapper.toDto(savedCategory);
     }
 }

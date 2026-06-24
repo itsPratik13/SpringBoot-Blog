@@ -1,5 +1,18 @@
 spring.datasource.url=
 spring.datasource.username=
 spring.datasource.password=
-spring.jpa.hibernate.ddl-auto=
-spring.jpa.show-sql=
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+
+DTOs=returns only these items
+responseEntity= res in express
+
+writing flow : ->
+1. Entity (database structure)
+2. Repository (data access)
+3. DTO (API response shape)
+4. Mapper (conversion logic)
+5. Service (business logic)
+6. Controller (API endpoint)
