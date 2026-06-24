@@ -6,6 +6,8 @@ import com.tut.blog.domain.services.CategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +33,6 @@ public class CategoryController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable UUID id) {
        categoryService.deleteCategory(id);
-       return ResponseEntity.noContent().build();
+       return new ResponseEntity<>(HttpStatus. NO_CONTENT);
     }
 }

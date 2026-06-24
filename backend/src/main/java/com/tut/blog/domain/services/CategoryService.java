@@ -6,7 +6,9 @@ import com.tut.blog.domain.entities.Category;
 import com.tut.blog.domain.mapper.CategoryMapper;
 import com.tut.blog.domain.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.UUID;
@@ -29,7 +31,10 @@ public class CategoryService {
 
     public void deleteCategory(UUID id) {
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found"));
+        if (!category.getPosts().isEmpty()) {
+            throw new IllegalStateException("Category has posts associated to it");
+        }
         categoryRepository.deleteById(id);
     }
 }
